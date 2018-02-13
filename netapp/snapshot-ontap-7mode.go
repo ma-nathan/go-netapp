@@ -79,9 +79,6 @@ type CreateSnapshotO7MListResponse struct {
 	XMLName xml.Name `xml:"netapp"`
 	Results struct {
 		ResultBase
-		//        AttributesList struct {
-		//            SnapshotO7MAttributes []SnapshotO7MInfo `xml:"snapshot-info"`
-		//        } `xml:"snapshots"`
 	} `xml:"results"`
 }
 
@@ -89,9 +86,6 @@ type DeleteSnapshotO7MListResponse struct {
 	XMLName xml.Name `xml:"netapp"`
 	Results struct {
 		ResultBase
-		//        AttributesList struct {
-		//            SnapshotO7MAttributes []SnapshotO7MInfo `xml:"snapshot-info"`
-		//        } `xml:"snapshots"`
 	} `xml:"results"`
 }
 

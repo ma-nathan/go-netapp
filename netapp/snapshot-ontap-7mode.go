@@ -86,15 +86,14 @@ type CreateSnapshotO7MListResponse struct {
 }
 
 type DeleteSnapshotO7MListResponse struct {
-    XMLName xml.Name `xml:"netapp"`
-    Results struct {
-        ResultBase
-        //        AttributesList struct {
-        //            SnapshotO7MAttributes []SnapshotO7MInfo `xml:"snapshot-info"`
-        //        } `xml:"snapshots"`
-    } `xml:"results"`
+	XMLName xml.Name `xml:"netapp"`
+	Results struct {
+		ResultBase
+		//        AttributesList struct {
+		//            SnapshotO7MAttributes []SnapshotO7MInfo `xml:"snapshot-info"`
+		//        } `xml:"snapshots"`
+	} `xml:"results"`
 }
-
 
 func (v *SnapshotO7M) Create(options *CreateSnapshotO7MOptions) (*CreateSnapshotO7MListResponse, *http.Response, error) {
 	v.CreateParams.XMLName = xml.Name{Local: "snapshot-create"}
@@ -105,11 +104,11 @@ func (v *SnapshotO7M) Create(options *CreateSnapshotO7MOptions) (*CreateSnapshot
 }
 
 func (v *SnapshotO7M) Delete(options *DeleteSnapshotO7MOptions) (*DeleteSnapshotO7MListResponse, *http.Response, error) {
-    v.DeleteParams.XMLName = xml.Name{Local: "snapshot-delete"}
-    v.DeleteParams.DeleteSnapshotO7MOptions = options
-    r := DeleteSnapshotO7MListResponse{}
-    res, err := v.get(v, &r)
-    return &r, res, err
+	v.DeleteParams.XMLName = xml.Name{Local: "snapshot-delete"}
+	v.DeleteParams.DeleteSnapshotO7MOptions = options
+	r := DeleteSnapshotO7MListResponse{}
+	res, err := v.get(v, &r)
+	return &r, res, err
 }
 
 func (v *SnapshotO7M) List(options *SnapshotO7MOptions) (*SnapshotO7MListResponse, *http.Response, error) {

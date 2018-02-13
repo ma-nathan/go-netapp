@@ -37,6 +37,7 @@ type Client struct {
 	QuotaReport     *QuotaReport
 	QuotaStatus     *QuotaStatus
 	Snapshot        *Snapshot
+	SnapshotO7M		*SnapshotO7M
 	System          *System
 	Volume          *Volume
 	VolumeSpace     *VolumeSpace
@@ -129,6 +130,10 @@ func NewClient(endpoint string, version string, options *ClientOptions) *Client 
 	}
 
 	c.Snapshot = &Snapshot{
+		Base: b,
+	}
+
+	c.SnapshotO7M = &SnapshotO7M{
 		Base: b,
 	}
 

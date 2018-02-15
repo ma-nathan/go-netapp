@@ -12,14 +12,6 @@ type SnapshotO7M struct {
 		XMLName xml.Name
 		*SnapshotO7MOptions
 	}
-	CreateParams struct {
-		XMLName xml.Name
-		*CreateSnapshotO7MOptions
-	}
-	DeleteParams struct {
-		XMLName xml.Name
-		*DeleteSnapshotO7MOptions
-	}
 }
 
 type SnapshotO7MQuery struct {
@@ -34,19 +26,14 @@ type SnapshotO7MOptions struct {
 	TargetType        string `xml:"target-type,omitempty"`
 	Terse             bool   `xml:"terse,omitempty"`
 	Volume            string `xml:"volume,omitempty"`
-}
-
-type DeleteSnapshotO7MOptions struct {
+	IgnoreOwners         bool   `xml:"ignore-owners,omitempty"`
+  // delete only
 	SnapshotInstanceUuid string `xml:"snapshot-instance-uuid,omitempty"`
+  // delete & create
 	Snapshot             string `xml:"snapshot,omitempty"`
-	Volume               string `xml:"volume,omitempty"`
-}
-
-type CreateSnapshotO7MOptions struct {
+  // create only
 	Async                   bool   `xml:"async,omitempty"`
 	IsValidLunCloneSnapshot bool   `xml:"is-valid-lun-clone-snapshot,omitempty"`
-	Snapshot                string `xml:"snapshot,omitempty"`
-	Volume                  string `xml:"volume,omitempty"`
 }
 
 type SnapshotO7MInfo struct {
@@ -89,17 +76,17 @@ type DeleteSnapshotO7MListResponse struct {
 	} `xml:"results"`
 }
 
-func (v *SnapshotO7M) Create(options *CreateSnapshotO7MOptions) (*CreateSnapshotO7MListResponse, *http.Response, error) {
-	v.CreateParams.XMLName = xml.Name{Local: "snapshot-create"}
-	v.CreateParams.CreateSnapshotO7MOptions = options
+func (v *SnapshotO7M) Create(options *SnapshotO7MOptions) (*CreateSnapshotO7MListResponse, *http.Response, error) {
+	v.Params.XMLName = xml.Name{Local: "snapshot-create"}
+	v.Params.SnapshotO7MOptions = options
 	r := CreateSnapshotO7MListResponse{}
 	res, err := v.get(v, &r)
 	return &r, res, err
 }
 
-func (v *SnapshotO7M) Delete(options *DeleteSnapshotO7MOptions) (*DeleteSnapshotO7MListResponse, *http.Response, error) {
-	v.DeleteParams.XMLName = xml.Name{Local: "snapshot-delete"}
-	v.DeleteParams.DeleteSnapshotO7MOptions = options
+func (v *SnapshotO7M) Delete(options *SnapshotO7MOptions) (*DeleteSnapshotO7MListResponse, *http.Response, error) {
+	v.Params.XMLName = xml.Name{Local: "snapshot-delete"}
+	v.Params.SnapshotO7MOptions = options
 	r := DeleteSnapshotO7MListResponse{}
 	res, err := v.get(v, &r)
 	return &r, res, err

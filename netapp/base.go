@@ -17,6 +17,7 @@ type ResultBase struct {
 	Status     string `xml:"status,attr"`
 	Reason     string `xml:"reason,attr"`
 	NumRecords string `json:"num-records"`
+	Errno      int    `xml:"errno,attr"`
 }
 
 func (r *ResultBase) Passed() bool {

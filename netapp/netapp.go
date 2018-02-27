@@ -37,7 +37,7 @@ type Client struct {
 	QuotaReport     *QuotaReport
 	QuotaStatus     *QuotaStatus
 	Snapshot        *Snapshot
-	SnapshotO7M		*SnapshotO7M
+	SnapshotO7M     *SnapshotO7M
 	System          *System
 	Volume          *Volume
 	VolumeSpace     *VolumeSpace
